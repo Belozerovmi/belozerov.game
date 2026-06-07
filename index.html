@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <title>Имаджинариум | Карикатуры Сергея Белозёрова</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #efe3cd;
+        --surface: #fdf7e8;
+        --card: #fff9ef;
+        --text: #2a2418;
+        --text-light: #5c4b32;
+        --border: #3c3224;
+        --shadow: #cbb88c;
+        --accent: #b2824a;
+        --input-bg: #fffdf5;
+      }
+
+      body.dark {
+        --bg: #2a241d;
+        --surface: #3b3528;
+        --card: #4a3f2e;
+        --text: #f2e8d4;
+        --text-light: #cfc19c;
+        --border: #d4c5a2;
+        --shadow: #6b5c42;
+        --accent: #c69c6d;
+        --input-bg: #5a4f3a;
+      }
+
+      body {
+        background-color: var(--bg);
+        font-family: "Segoe Print", "Comic Sans MS", "Chalkboard SE", cursive;
+        transition: background 0.2s;
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .container {
+        max-width: 1300px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
+
+      button,
+      .btn,
+      [role="button"],
+      input,
+      textarea {
+        -webkit-tap-highlight-color: transparent;
+        font-family: inherit;
+      }
+
+      /* ========== ХЕДЕР ========== */
+      .header-island {
+        position: relative;
+        background: var(--surface);
+        border-radius: 60px 30px 70px 35px;
+        padding: 20px 35px;
+        margin-bottom: 40px;
+        box-shadow: 10px 12px 0 var(--shadow);
+      }
+      .header-island::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        background: transparent;
+        border: 3px solid var(--border);
+        border-radius: 62px 32px 72px 37px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+
+      .header-flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .logo h1 {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .logo p {
+        color: var(--text-light);
+        font-size: 0.85rem;
+      }
+
+      /* ========== БУРГЕР-МЕНЮ ========== */
+      .burger-controls {
+        display: none;
+        align-items: center;
+        gap: 15px;
+      }
+
+      /* Стилизованная кнопка бургера */
+      .burger-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 38px;
+        height: 32px;
+        background: var(--card);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        border-radius: 12px;
+        box-shadow: 3px 3px 0 var(--shadow);
+      }
+      .burger-btn::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid var(--border);
+        border-radius: 14px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .burger-btn span {
+        display: block;
+        width: 22px;
+        height: 2.5px;
+        background: var(--border);
+        border-radius: 3px;
+        transition: 0.2s;
+        margin: 0 auto;
+      }
+      .burger-btn.active span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+        width: 24px;
+      }
+      .burger-btn.active span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .burger-btn.active span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+        width: 24px;
+      }
+
+      /* Мобильное меню (выезжает сверху) */
+      .mobile-menu {
+        position: fixed;
+        top: -100%;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+        z-index: 1000;
+        transition: top 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        padding: 25px 25px 35px;
+      }
+      .mobile-menu::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border: 3px solid var(--border);
+        border-bottom-left-radius: 38px;
+        border-bottom-right-radius: 38px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .mobile-menu.open {
+        top: 0;
+      }
+
+      /* Шапка мобильного меню с логотипом и кнопкой закрытия */
+      .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px dotted var(--accent);
+      }
+      .mobile-menu-logo h3 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--text);
+      }
+      .mobile-menu-logo p {
+        font-size: 0.7rem;
+        color: var(--text-light);
+      }
+
+      /* Кнопка закрытия (крестик) внутри меню */
+      .close-menu-btn {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        background: var(--card);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 3px 3px 0 var(--shadow);
+      }
+      .close-menu-btn::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid var(--border);
+        border-radius: 14px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .close-menu-btn span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 22px;
+        height: 2.5px;
+        background: var(--border);
+        border-radius: 3px;
+      }
+      .close-menu-btn span:first-child {
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+      .close-menu-btn span:last-child {
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      .mobile-nav .tab-btn {
+        width: 100%;
+        text-align: center;
+        font-size: 1.2rem;
+        padding: 12px 20px;
+      }
+      .mobile-theme-toggle {
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      /* Десктопная навигация */
+      .nav-tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      /* КНОПКИ ТАБОВ С ОБВОДКОЙ */
+      .tab-btn {
+        position: relative;
+        background: transparent;
+        border: none;
+        font-weight: bold;
+        font-size: 1rem;
+        padding: 8px 18px;
+        cursor: pointer;
+        color: var(--text);
+        border-radius: 15px;
+        transition: 0.08s linear;
+      }
+      .tab-btn::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: transparent;
+        border: 2px solid var(--border);
+        border-radius: 17px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+        opacity: 0.5;
+        transition: 0.1s;
+      }
+      .tab-btn.active {
+        background: var(--card);
+        transform: translateY(-2px);
+        box-shadow: 4px 4px 0 var(--shadow);
+      }
+      .tab-btn.active::before {
+        opacity: 1;
+      }
+      .tab-btn:active {
+        transform: translateY(2px);
+      }
+
+      /* КНОПКА ТЕМЫ */
+      .theme-toggle {
+        position: relative;
+        background: var(--card);
+        border: none;
+        border-radius: 15px;
+        padding: 6px 18px;
+        font-weight: bold;
+        cursor: pointer;
+        color: var(--text);
+        box-shadow: 3px 3px 0 var(--shadow);
+      }
+      .theme-toggle::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid var(--border);
+        border-radius: 17px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+
+      /* ========== КАРТОЧКИ ========== */
+      .sketch-card {
+        position: relative;
+        background: var(--card);
+        border-radius: 15px;
+        padding: 30px 35px;
+        margin-bottom: 35px;
+        box-shadow: 8px 8px 0 var(--shadow);
+      }
+      .sketch-card::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border: 3px solid var(--border);
+        border-radius: 18px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .sketch-card h2 {
+        font-size: 2rem;
+        border-left: 8px solid var(--accent);
+        padding-left: 20px;
+        margin-bottom: 20px;
+      }
+      .sketch-card h3 {
+        font-size: 1.5rem;
+        margin: 25px 0 15px;
+        color: var(--accent);
+      }
+
+      /* КНОПКИ-ДЕЙСТВИЯ */
+      .btn-sketch {
+        position: relative;
+        display: inline-block;
+        margin: 8px 8px 8px 0;
+      }
+      .btn-sketch-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--surface);
+        border-radius: 15px;
+        box-shadow: 4px 4px 0 var(--shadow);
+        pointer-events: none;
+      }
+      .btn-sketch-bg::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid var(--border);
+        border-radius: 17px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .btn-sketch-text {
+        position: relative;
+        display: inline-block;
+        font-weight: bold;
+        font-size: 1rem;
+        color: var(--text);
+        padding: 8px 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 2;
+        border-radius: 15px;
+      }
+      .btn-sketch:hover .btn-sketch-bg {
+        transform: scale(1.02) translateY(-2px);
+        box-shadow: 6px 6px 0 var(--shadow);
+      }
+      .btn-sketch:hover .btn-sketch-text {
+        transform: scale(1.02) translateY(-2px);
+      }
+
+      /* ИНПУТЫ И ТЕКСТАРЕА */
+      .feedback-form input,
+      .feedback-form textarea {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        background: var(--input-bg);
+        border: none;
+        border-radius: 15px;
+        font-family: inherit;
+        color: var(--text);
+        position: relative;
+      }
+      .input-wrapper {
+        position: relative;
+        margin: 10px 0;
+      }
+      .feedback-form input,
+      .feedback-form textarea {
+        position: relative;
+        z-index: 1;
+        background: var(--input-bg);
+      }
+      .feedback-form .input-wrapper::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid var(--border);
+        border-radius: 17px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .feedback-form input,
+      .feedback-form textarea {
+        border: none;
+        outline: none;
+      }
+
+      /* БЛОКИ БИОГРАФИЙ */
+      .bio-block {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 25px 0;
+        align-items: flex-start;
+      }
+      .bio-photo {
+        flex: 0 0 200px;
+        background: var(--bg);
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        position: relative;
+      }
+      .bio-photo::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px dashed var(--border);
+        border-radius: 17px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .bio-photo svg {
+        width: 150px;
+        height: 150px;
+      }
+      .bio-img {
+        border-radius: 12px;
+        width: 100%;
+        object-fit: contain;
+      }
+      .bio-text {
+        flex: 1;
+      }
+
+      /* ИСТОРИЯ */
+      .history-item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 35px 0;
+        align-items: center;
+      }
+      .history-item.reverse {
+        flex-direction: row-reverse;
+      }
+      .history-photo {
+        flex: 1;
+        min-width: 200px;
+        background: var(--bg);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+      .history-photo::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px dashed var(--border);
+        border-radius: 17px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+      .history-text {
+        flex: 1;
+      }
+
+      /* ФУТЕР */
+      .footer-island {
+        position: relative;
+        background: var(--surface);
+        border-radius: 15px;
+        padding: 30px 25px;
+        margin-top: 50px;
+        text-align: center;
+      }
+      .footer-island::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border: 3px solid var(--border);
+        border-radius: 18px;
+        filter: url(#border-tremble);
+        pointer-events: none;
+      }
+
+      .page {
+        display: none;
+        animation: fade 0.25s;
+      }
+      .active-page {
+        display: block;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Адаптив */
+      @media (max-width: 800px) {
+        .container {
+          width: 95%;
+        }
+        .header-flex {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        /* Скрываем десктопную навигацию и тему */
+        .nav-tabs {
+          display: none;
+        }
+        .header-island .theme-toggle {
+          display: none;
+        }
+        /* Показываем блок с бургером и лого */
+        .burger-controls {
+          display: flex;
+        }
+        .sketch-card {
+          padding: 20px;
+        }
+        .bio-block {
+          flex-direction: column;
+          align-items: center;
+        }
+        .sketch-card h2 {
+          font-size: 1.6rem;
+        }
+        /* Логотип в хедере можно чуть сжать */
+        .logo h1 {
+          font-size: 1.3rem;
+        }
+        .logo p {
+          font-size: 0.7rem;
+        }
+      }
+
+      @media (min-width: 801px) {
+        .mobile-menu {
+          display: none;
+        }
+        .burger-controls {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header-island">
+        <div class="header-flex">
+          <div class="logo">
+            <h1>Имаджинариум</h1>
+            <p>Карикатуры Сергея Белозёрова</p>
+          </div>
+          <div class="nav-tabs">
+            <button class="tab-btn active" data-page="welcome">
+              Приветствие
+            </button>
+            <button class="tab-btn" data-page="rules">Правила</button>
+            <button class="tab-btn" data-page="history">История</button>
+            <button class="tab-btn" data-page="father">Биографии</button>
+            <button class="tab-btn" data-page="feedback">Обратная связь</button>
+          </div>
+          <button class="theme-toggle" id="themeToggleDesktop">
+            Смена темы
+          </button>
+
+          <!-- Бургер-контролы для мобильных -->
+          <div class="burger-controls">
+            <button class="burger-btn" id="burgerBtn">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Мобильное меню (выезжает сверху) -->
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+          <div class="mobile-menu-logo">
+            <h3>Имаджинариум</h3>
+            <p>Карикатуры Белозёрова</p>
+          </div>
+          <button class="close-menu-btn" id="closeMenuBtn">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+        <div class="mobile-nav">
+          <button class="tab-btn active" data-page="welcome">
+            Приветствие
+          </button>
+          <button class="tab-btn" data-page="rules">Правила</button>
+          <button class="tab-btn" data-page="history">История</button>
+          <button class="tab-btn" data-page="father">Биографии</button>
+          <button class="tab-btn" data-page="feedback">Обратная связь</button>
+          <button
+            class="theme-toggle mobile-theme-toggle"
+            id="themeToggleMobile"
+          >
+            Смена темы
+          </button>
+        </div>
+      </div>
+
+      <!-- ПРИВЕТСТВИЕ -->
+      <div id="welcome-page" class="page active-page">
+        <div class="sketch-card">
+          <h2>Добро пожаловать</h2>
+          <p style="font-size: 1.2rem; margin-bottom: 20px">
+            Вы отсканировали QR-код и попали в мир карикатур воронежского
+            художника Сергея Белозёрова.
+          </p>
+          <p>
+            Здесь собраны правила, история создания игры, подробные биографии
+            создателей, а также вы можете оставить нам тёплое послание. Игра
+            «Имаджинариум: Карикатуры Сергея Белозёрова» создавалась в семейной
+            гостиной — карточка за карточкой.
+          </p>
+          <div style="margin: 25px 0 10px">
+            <div class="btn-sketch">
+              <div class="btn-sketch-bg"></div>
+              <button class="btn-sketch-text" id="goToRulesBtn">
+                К правилам игры
+              </button>
+            </div>
+            <div class="btn-sketch">
+              <div class="btn-sketch-bg"></div>
+              <button class="btn-sketch-text" id="goToFatherBtn">
+                Биографии
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ПРАВИЛА -->
+      <div id="rules-page" class="page">
+        <div class="sketch-card">
+          <h2>Правила игры</h2>
+          <p>
+            <strong>Имаджинариум: Карикатуры Сергея Белозёрова</strong> —
+            ассоциативная игра. Ведущий придумывает ассоциацию к своей карте,
+            остальные подбирают свои, затем голосуют.
+          </p>
+          <h3>Комплектация</h3>
+          <p>
+            <strong>60 карт</strong> с карикатурами,
+            <strong>10 карт усложнения</strong>, игровое поле (30 клеток),
+            фишки, жетоны голосования.
+          </p>
+          <h3>Ход игры</h3>
+          <p>
+            Ведущий выбирает карту. Если на спецклетке — тянет карту усложнения.
+            Называет ассоциацию. Игроки кладут свои карты. Ведущий мешает,
+            выкладывает в ряд. Голосование жетонами. Очки: +3 угадавшему, +3
+            ведущему (если угадали не все), -2 ведущему (если не угадал никто
+            или все). Победа при достижении клетки 30.
+          </p>
+        </div>
+      </div>
+
+      <!-- ИСТОРИЯ СОЗДАНИЯ -->
+      <div id="history-page" class="page">
+        <div class="sketch-card">
+          <h2>История создания</h2>
+          <div class="history-item">
+            <div class="history-photo">
+              <svg width="180" height="140" viewBox="0 0 200 150">
+                <rect
+                  x="20"
+                  y="15"
+                  width="160"
+                  height="110"
+                  fill="#DCC9A2"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="100"
+                  cy="65"
+                  r="25"
+                  fill="none"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <path
+                  d="M50 45 L70 55 M150 45 L130 55"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+              </svg>
+              <p>Первые эскизы, 2023</p>
+            </div>
+            <div class="history-text">
+              <p>
+                Всё началось с папки рисунков Сергея Белозёрова. Мы перебирали
+                карикатуры и поняли, что из них получится отличная ассоциативная
+                игра. Михаил придумал механику, Дарья — стиль и правила, Сергей
+                рисовал.
+              </p>
+            </div>
+          </div>
+          <div class="history-item reverse">
+            <div class="history-photo">
+              <svg width="180" height="140" viewBox="0 0 200 150">
+                <rect
+                  x="20"
+                  y="15"
+                  width="160"
+                  height="110"
+                  fill="#E8D5B0"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <path
+                  d="M50 35 L150 35 M50 85 L150 85"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <circle cx="70" cy="60" r="8" fill="#3C3224" />
+                <circle cx="130" cy="60" r="8" fill="#3C3224" />
+              </svg>
+              <p>Процесс печати карт</p>
+            </div>
+            <div class="history-text">
+              <p>
+                Карточки резали вручную, тестировали на друзьях. Каждая деталь
+                проходила проверку — от цвета до толщины линии.
+              </p>
+            </div>
+          </div>
+          <div class="history-item">
+            <div class="history-photo">
+              <svg width="180" height="140" viewBox="0 0 200 150">
+                <rect
+                  x="20"
+                  y="15"
+                  width="160"
+                  height="110"
+                  fill="#DAC299"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <circle cx="100" cy="70" r="20" fill="#B2824A" />
+                <path
+                  d="M40 40 L70 55 M160 40 L130 55"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+              </svg>
+              <p>Тестовая партия</p>
+            </div>
+            <div class="history-text">
+              <p>
+                Первая тестовая партия прошла в Воронеже, в семейном кругу. Игра
+                вызвала море смеха — именно тогда мы поняли, что всё сделали
+                правильно.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- БИОГРАФИИ -->
+      <div id="father-page" class="page">
+        <div class="sketch-card">
+          <h2>Сергей Белозёров</h2>
+          <p style="font-size: 1.1rem">
+            Российский художник-карикатурист и иллюстратор из Воронежа. Призёр
+            международных конкурсов, создатель культового персонажа «МОЁшкин
+            кот».
+          </p>
+          <div class="bio-block">
+            <div class="bio-photo">
+              <img
+                class="bio-img"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 160'%3E%3Ccircle cx='75' cy='65' r='45' fill='%23DCC9A2' stroke='%233C3224' stroke-width='2.5'/%3E%3Ccircle cx='58' cy='55' r='4' fill='%232A2418'/%3E%3Ccircle cx='92' cy='55' r='4' fill='%232A2418'/%3E%3Cpath d='M60 80 L75 95 L90 80' stroke='%233C3224' stroke-width='2.5' fill='none'/%3E%3Cpath d='M30 25 L50 35 M120 25 L100 35' stroke='%233C3224' stroke-width='2.5'/%3E%3C/svg%3E"
+                alt="Портрет"
+              />
+              <p>Фото: скоро</p>
+            </div>
+            <div class="bio-text">
+              <p>
+                <strong>Ранние годы:</strong> Родился в 1970 году в поселке
+                Кантемировка Воронежской области. Окончил Воронежский
+                педагогический институт. Был учителем немецкого языка, затем
+                замдиректора школы. Дебютировал в газете «Коммуна-Спорт». С 2001
+                года — дизайнер в «МОЁ!», создал МОЁшкиного кота. Работал в
+                «Комсомольской правде», иллюстрировал детские журналы. Призёр
+                конкурсов в Сербии, Италии, Китае (бронза за карикатуру «Репка»
+                о пандемии).
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sketch-card">
+          <h2>Михаил Белозёров</h2>
+          <div class="bio-block">
+            <div class="bio-photo">
+              <svg width="130" height="140" viewBox="0 0 130 140">
+                <ellipse
+                  cx="65"
+                  cy="65"
+                  rx="35"
+                  ry="45"
+                  fill="#E8D5B0"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <circle cx="50" cy="55" r="2.5" fill="#2A2418" />
+                <circle cx="80" cy="55" r="2.5" fill="#2A2418" />
+                <path d="M55 80 L75 80" stroke="#3C3224" stroke-width="2" />
+              </svg>
+              <p>Фото: скоро</p>
+            </div>
+            <div class="bio-text">
+              <p>
+                Средний сын (2006 г.р.). Музыкант (группа «Без Шуток!»), затем
+                увлёкся дизайном и IT. Придумал механику игры и написал правила.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="sketch-card">
+          <h2>Дарья</h2>
+          <div class="bio-block">
+            <div class="bio-photo">
+              <svg width="130" height="140" viewBox="0 0 130 140">
+                <ellipse
+                  cx="65"
+                  cy="60"
+                  rx="30"
+                  ry="35"
+                  fill="#F2E5CF"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <path
+                  d="M50 50 L60 55 M80 50 L70 55"
+                  stroke="#3C3224"
+                  stroke-width="2"
+                />
+                <circle cx="52" cy="45" r="2" fill="#2A2418" />
+                <circle cx="78" cy="45" r="2" fill="#2A2418" />
+                <path d="M58 72 L72 72" stroke="#3C3224" stroke-width="2" />
+              </svg>
+              <p>Фото: скоро</p>
+            </div>
+            <div class="bio-text">
+              <p>
+                Невеста Михаила, иллюстратор и организатор. Оцифровала рисунки,
+                настояла на создании сайта с QR-кодом.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ОБРАТНАЯ СВЯЗЬ -->
+      <div id="feedback-page" class="page">
+        <div class="sketch-card">
+          <h2>Написать команде</h2>
+          <p>Мы будем рады вашим словам, идеям или просто тёплым пожеланиям.</p>
+          <form class="feedback-form" id="feedbackForm">
+            <div class="input-wrapper">
+              <input type="text" placeholder="Ваше имя" id="fbName" />
+            </div>
+            <div class="input-wrapper">
+              <textarea
+                placeholder="Ваше сообщение..."
+                id="fbMessage"
+              ></textarea>
+            </div>
+            <div class="btn-sketch">
+              <div class="btn-sketch-bg"></div>
+              <button type="submit" class="btn-sketch-text">
+                Отправить послание
+              </button>
+            </div>
+          </form>
+          <p
+            id="feedbackResult"
+            style="margin-top: 15px; color: var(--accent)"
+          ></p>
+        </div>
+      </div>
+
+      <!-- ФУТЕР -->
+      <div class="footer-island">
+        <p>© 2025 — Семья Белозёровых, Воронеж</p>
+        <p>Каждая линия — от руки. Храните тепло семейных игр.</p>
+      </div>
+    </div>
+
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden">
+      <defs>
+        <filter
+          id="border-tremble"
+          x="-10%"
+          y="-10%"
+          width="120%"
+          height="120%"
+        >
+          <feTurbulence
+            type="turbulence"
+            baseFrequency="0.045"
+            numOctaves="3"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="2.8"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="displaced"
+          />
+          <feComposite in="displaced" in2="SourceGraphic" operator="over" />
+        </filter>
+      </defs>
+    </svg>
+
+    <script>
+      function switchPage(pageId) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active-page"));
+        document.getElementById(pageId + "-page").classList.add("active-page");
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
+          if (btn.getAttribute("data-page") === pageId)
+            btn.classList.add("active");
+        });
+        closeMobileMenu();
+      }
+
+      function openMobileMenu() {
+        mobileMenu.classList.add("open");
+        burgerBtn.classList.add("active");
+      }
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("open");
+        burgerBtn.classList.remove("active");
+      }
+      function toggleMobileMenu() {
+        if (mobileMenu.classList.contains("open")) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      const burgerBtn = document.getElementById("burgerBtn");
+      const closeMenuBtn = document.getElementById("closeMenuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      burgerBtn?.addEventListener("click", toggleMobileMenu);
+      closeMenuBtn?.addEventListener("click", closeMobileMenu);
+
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          switchPage(btn.getAttribute("data-page"));
+        });
+      });
+
+      document
+        .getElementById("goToRulesBtn")
+        ?.addEventListener("click", () => switchPage("rules"));
+      document
+        .getElementById("goToFatherBtn")
+        ?.addEventListener("click", () => switchPage("father"));
+
+      function toggleTheme() {
+        document.body.classList.toggle("dark");
+      }
+      document
+        .getElementById("themeToggleDesktop")
+        ?.addEventListener("click", toggleTheme);
+      document
+        .getElementById("themeToggleMobile")
+        ?.addEventListener("click", toggleTheme);
+
+      document
+        .getElementById("feedbackForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const name =
+            document.getElementById("fbName").value.trim() || "Гость";
+          const msg = document.getElementById("fbMessage").value.trim();
+          if (!msg) {
+            document.getElementById("feedbackResult").innerText =
+              "Напишите что-нибудь :)";
+            return;
+          }
+          document.getElementById("feedbackResult").innerHTML =
+            `Спасибо, ${name}! Ваше сообщение отправлено.`;
+          document.getElementById("fbName").value = "";
+          document.getElementById("fbMessage").value = "";
+          setTimeout(
+            () => (document.getElementById("feedbackResult").innerText = ""),
+            4000,
+          );
+        });
+
+      if (window.innerWidth <= 800) {
+        document.addEventListener("click", function (e) {
+          if (
+            mobileMenu.classList.contains("open") &&
+            !mobileMenu.contains(e.target) &&
+            !burgerBtn.contains(e.target)
+          ) {
+            closeMobileMenu();
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
