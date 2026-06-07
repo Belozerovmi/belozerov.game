@@ -319,7 +319,7 @@
         background: var(--card);
         border: none;
         border-radius: 15px;
-        padding: 6px 18px;
+        padding: 8px 18px;
         font-weight: bold;
         cursor: pointer;
         color: var(--text);
@@ -427,7 +427,7 @@
         width: 100%;
         padding: 12px;
         margin: 10px 0;
-        background: var(--input-bg);
+        background: transparent;
         border: none;
         border-radius: 15px;
         font-family: inherit;
@@ -442,7 +442,7 @@
       .feedback-form textarea {
         position: relative;
         z-index: 1;
-        background: var(--input-bg);
+        background: transparent;
       }
       .feedback-form .input-wrapper::before {
         content: "";
@@ -626,6 +626,15 @@
         }
         .burger-controls {
           display: none;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .btn-sketch {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     </style>
