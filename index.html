@@ -170,7 +170,7 @@
       /* Мобильное меню (выезжает сверху) */
       .mobile-menu {
         position: fixed;
-        top: -100%;
+        top: 0;
         left: 0;
         right: 0;
         background: var(--surface);
@@ -178,8 +178,11 @@
         border-bottom-right-radius: 35px;
         box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
         z-index: 1000;
-        transition: top 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         padding: 25px 25px 35px;
+        /* Включаем аппаратное ускорение GPU */
+        transform: translateY(-100%);
+        will-change: transform;
       }
       .mobile-menu::before {
         content: "";
@@ -191,11 +194,18 @@
         border: 3px solid var(--border);
         border-bottom-left-radius: 38px;
         border-bottom-right-radius: 38px;
-        /* filter: url(#border-tremble); */
         pointer-events: none;
+        filter: url(#border-tremble);
       }
       .mobile-menu.open {
-        top: 0;
+        transform: translateY(0);
+      }
+
+      /* На десктопе можно оставить фильтр */
+      @media (min-width: 801px) {
+        .mobile-menu::before {
+          filter: url(#border-tremble);
+        }
       }
 
       /* Шапка мобильного меню с логотипом и кнопкой закрытия */
