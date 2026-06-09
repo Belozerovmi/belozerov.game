@@ -1,0 +1,818 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+}
+
+:root {
+  --bg: #efe3cd;
+  --surface: #fdf7e8;
+  --card: #fff9ef;
+  --text: #2a2418;
+  --text-light: #5c4b32;
+  --border: #3c3224;
+  --shadow: #cbb88c;
+  --accent: #b2824a;
+  --input-bg: #fffdf5;
+}
+
+body.dark {
+  --bg: #2a241d;
+  --surface: #3b3528;
+  --card: #4a3f2e;
+  --text: #f2e8d4;
+  --text-light: #cfc19c;
+  --border: #d4c5a2;
+  --shadow: #6b5c42;
+  --accent: #c69c6d;
+  --input-bg: #5a4f3a;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: "Shantell Sans", cursive;
+  transition: background 0.2s;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+button,
+.btn,
+[role="button"],
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+}
+
+/* ========== ХЕДЕР ========== */
+.header-island {
+  position: relative;
+  background: var(--surface);
+  border-radius: 60px 30px 70px 35px;
+  padding: 20px 35px;
+  margin-bottom: 40px;
+  box-shadow: 10px 12px 0 var(--shadow);
+}
+.header-island::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: transparent;
+  border: 3px solid var(--border);
+  border-radius: 62px 32px 72px 37px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+
+.header-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.logo p {
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+/* ========== БУРГЕР-МЕНЮ ========== */
+.burger-controls {
+  display: none;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Стилизованная кнопка бургера */
+.burger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 32px;
+  background: var(--card);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.burger-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+.burger-btn span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  background: var(--border);
+  border-radius: 3px;
+  transition: 0.2s;
+  margin: 0 auto;
+}
+.burger-btn.active span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+  width: 24px;
+}
+.burger-btn.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger-btn.active span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
+  width: 24px;
+}
+
+/* Мобильное меню (выезжает сверху) */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  padding: 25px 25px 35px;
+  /* Включаем аппаратное ускорение GPU */
+  transform: translateY(-110%);
+  will-change: transform;
+}
+.mobile-menu::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid var(--border);
+  border-bottom-left-radius: 38px;
+  border-bottom-right-radius: 38px;
+  pointer-events: none;
+}
+.mobile-menu.open {
+  transform: translateY(0);
+}
+
+/* На десктопе можно оставить фильтр */
+@media (min-width: 801px) {
+  .mobile-menu::before {
+    filter: url(#border-tremble);
+  }
+}
+
+/* Шапка мобильного меню с логотипом и кнопкой закрытия */
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px dotted var(--accent);
+}
+.mobile-menu-logo h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+}
+.mobile-menu-logo p {
+  font-size: 0.7rem;
+  color: var(--text-light);
+}
+
+/* Кнопка закрытия (крестик) внутри меню */
+.close-menu-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: var(--card);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.close-menu-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+.close-menu-btn span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 2.5px;
+  background: var(--border);
+  border-radius: 3px;
+}
+.close-menu-btn span:first-child {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.close-menu-btn span:last-child {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+.mobile-nav .tab-btn {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 12px 20px;
+}
+.mobile-theme-toggle {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Десктопная навигация */
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* КНОПКИ ТАБОВ С ОБВОДКОЙ */
+.tab-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 8px 18px;
+  cursor: pointer;
+  color: var(--text);
+  border-radius: 15px;
+  transition: 0.08s linear;
+}
+.tab-btn::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+  opacity: 0.5;
+  transition: 0.1s;
+}
+.tab-btn.active {
+  background: var(--card);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--shadow);
+}
+.tab-btn.active::before {
+  opacity: 1;
+}
+.tab-btn:active {
+  transform: translateY(2px);
+}
+
+/* КНОПКА ТЕМЫ */
+.theme-toggle {
+  position: relative;
+  background: var(--card);
+  border: none;
+  border-radius: 15px;
+  padding: 8px 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--text);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+.theme-toggle::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+
+/* ========== КАРТОЧКИ ========== */
+.sketch-card {
+  position: relative;
+  background: var(--card);
+  border-radius: 15px;
+  padding: 30px 35px;
+  margin-bottom: 35px;
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+.sketch-card::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+.sketch-card h2 {
+  font-size: 2rem;
+  /* border-left: 8px solid var(--accent);
+        padding-left: 20px; */
+  margin-bottom: 20px;
+}
+.sketch-card h3 {
+  font-size: 1.5rem;
+  margin: 25px 0 15px;
+  color: var(--accent);
+}
+
+/* КНОПКИ-ДЕЙСТВИЯ */
+.btn-sketch {
+  position: relative;
+  display: inline-block;
+  margin: 8px 8px 8px 0;
+}
+.btn-sketch-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--surface);
+  border-radius: 15px;
+  box-shadow: 4px 4px 0 var(--shadow);
+  pointer-events: none;
+}
+.btn-sketch-bg::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+.btn-sketch-text {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--text);
+  padding: 8px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 15px;
+}
+.btn-sketch:hover .btn-sketch-bg {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 6px 6px 0 var(--shadow);
+}
+.btn-sketch:hover .btn-sketch-text {
+  transform: scale(1.02) translateY(-2px);
+}
+
+/* ИНПУТЫ И ТЕКСТАРЕА */
+.feedback-form input,
+.feedback-form textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: transparent;
+  border: none;
+  border-radius: 15px;
+  font-family: inherit;
+  color: var(--text);
+  position: relative;
+}
+.input-wrapper {
+  position: relative;
+  margin: 10px 0;
+}
+.feedback-form input,
+.feedback-form textarea {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+.feedback-form .input-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+  z-index: 0;
+}
+.feedback-form input,
+.feedback-form textarea {
+  border: none;
+  outline: none;
+}
+
+/* БЛОКИ БИОГРАФИЙ */
+.bio-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 25px 0;
+  align-items: flex-start;
+}
+.bio-photo {
+  flex: 0 0 200px;
+  background: var(--bg);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  position: relative;
+}
+.bio-photo::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+.bio-photo svg {
+  width: 150px;
+  height: 150px;
+}
+.bio-img {
+  width: 100%;
+  object-fit: contain;
+}
+.bio-text {
+  flex: 1;
+}
+
+/* ИСТОРИЯ */
+.history-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 35px 0;
+  align-items: center;
+}
+.history-item.reverse {
+  flex-direction: row-reverse;
+}
+.history-photo {
+  flex: 1;
+  min-width: 200px;
+  background: var(--bg);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+.history-photo::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+.history-text {
+  flex: 1;
+}
+
+/* ФУТЕР */
+.footer-island {
+  position: relative;
+  background: var(--surface);
+  border-radius: 15px;
+  padding: 30px 25px;
+  margin-top: 50px;
+  text-align: center;
+}
+.footer-island::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+
+.page {
+  display: none;
+  animation: fade 0.25s;
+}
+.active-page {
+  display: block;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Адаптив */
+@media (max-width: 800px) {
+  .container {
+    width: 95%;
+  }
+  .header-flex {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  /* Скрываем десктопную навигацию и тему */
+  .nav-tabs {
+    display: none;
+  }
+  .header-island .theme-toggle {
+    display: none;
+  }
+  /* Показываем блок с бургером и лого */
+  .burger-controls {
+    display: flex;
+  }
+  .sketch-card {
+    padding: 20px;
+  }
+  .bio-block {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sketch-card h2 {
+    font-size: 1.6rem;
+  }
+  /* Логотип в хедере можно чуть сжать */
+  .logo h1 {
+    font-size: 1.3rem;
+  }
+  .logo p {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 801px) {
+  .mobile-menu {
+    display: none;
+  }
+  .burger-controls {
+    display: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .history-item,
+  .history-item.reverse {
+    flex-direction: column-reverse;
+  }
+
+  .history-photo {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .btn-sketch {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 570px) {
+  .flex-count {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.rules-table-person-count {
+  display: flex;
+  gap: 30px;
+}
+
+/* Блок биографий */
+.bio-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.bio-photo {
+  flex: 0 0 160px;
+  text-align: center;
+}
+
+.bio-photo svg {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 6px 6px 0 var(--shadow-warm);
+}
+
+.bio-photo p {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.bio-text {
+  flex: 3;
+}
+
+.bio-text p {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Список наград */
+.awards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.award-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--accent-dot);
+}
+
+.award-year {
+  flex: 0 0 70px;
+  font-weight: bold;
+  color: var(--text-soft);
+}
+
+.award-desc {
+  flex: 1;
+}
+
+/* Адаптив для мобилок */
+@media (max-width: 700px) {
+  .bio-block {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .bio-block.reverse {
+    flex-direction: column;
+  }
+
+  .bio-text {
+    text-align: left;
+  }
+
+  .award-year {
+    flex: 0 0 auto;
+    font-weight: bold;
+  }
+
+  .award-item {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+.bio-photo img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+/* =============================================== */
+/* =============================================== */
+/* =============================================== */
+/* ==================ПЕРСОНАЖИ==================== */
+.rat-character img {
+  max-width: 100px;
+}
+
+.rat-character {
+  position: relative;
+}
+/* ========== ПЕРСОНАЖ В БЛОКЕ ПРИВЕТСТВИЯ ========== */
+.welcome-card {
+  position: relative;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-character {
+  position: absolute;
+  bottom: -1px;
+  right: 20px;
+  z-index: 0;
+  opacity: 0.85;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.welcome-character img {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  drop-shadow: (4px 0px 2px var(--shadow));
+  transition: transform 0.3s ease;
+}
+
+.welcome-character img:hover {
+  transform: scale(1.05);
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 600px) {
+  .welcome-character {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    bottom: -65px;
+  }
+
+  .welcome-character img {
+    max-width: 70px;
+  }
+
+  .welcome-card {
+    display: flex;
+    flex-direction: column;
+  }
+}
