@@ -765,7 +765,7 @@ textarea {
 .rat-character {
   position: relative;
 }
-/* ========== ПЕРСОНАЖ В БЛОКЕ ПРИВЕТСТВИЯ ========== */
+/* ========== ПЕРСОНАЖ В БЛОКЕ ПРИВЕТСТВИЯ (КРЫСИЧ)========== */
 .welcome-card {
   position: relative;
 }
@@ -780,7 +780,7 @@ textarea {
   bottom: -1px;
   right: 20px;
   z-index: 0;
-  opacity: 0.85;
+
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
@@ -794,10 +794,6 @@ textarea {
   transition: transform 0.3s ease;
 }
 
-.welcome-character img:hover {
-  transform: scale(1.05);
-}
-
 /* Адаптив для мобильных устройств */
 @media (max-width: 600px) {
   .welcome-character {
@@ -809,6 +805,45 @@ textarea {
 
   .welcome-character img {
     max-width: 70px;
+  }
+
+  .welcome-card {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ========== ПЕРСОНАЖ В БЛОКЕ ПРИВЕТСТВИЯ (МУХИЧ)========== */
+.welcome-character-fly {
+  position: absolute;
+  top: -30px;
+  left: 10px;
+  z-index: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.welcome-character-fly img {
+  max-width: 50px;
+  transform: scaleX(-1);
+  height: auto;
+  display: block;
+  box-shadow: (4px 0px 2px var(--shadow));
+  transition: transform 0.3s ease;
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 600px) {
+  .welcome-character-fly {
+    display: flex;
+    justify-content: flex-start;
+    /* margin-top: 20px; */
+    /* bottom: -65px; */
+  }
+
+  .welcome-character-fly img {
+    max-width: 30px;
   }
 
   .welcome-card {
