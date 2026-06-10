@@ -482,6 +482,7 @@ textarea {
   align-items: center;
   padding: 8px;
   position: relative;
+  justify-content: center;
 }
 .bio-photo::before {
   content: "";
@@ -712,12 +713,38 @@ textarea {
   transition: transform 0.2s ease;
 }
 
-.rules-character img {
+.rules-character img,
+.bio-character img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   filter: drop-shadow(2px 0px 0px var(--shadow));
   transition: transform 0.2s ease;
+}
+
+.bio-character {
+  position: absolute;
+  z-index: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dvornik {
+  top: -40px;
+  right: 150px;
+  z-index: 1;
+  width: 150px;
+}
+
+.kot-winner {
+  width: 300px;
+  right: -100px;
+  transform: rotate(-45deg);
+  transition: all 200ms ease-in-out;
+}
+
+.kot-winner:hover {
+  transform: rotate(-46deg);
 }
 
 /* Таракан - напротив "Цель игры" */
@@ -733,7 +760,7 @@ textarea {
   transform: scaleX(-1);
 }
 
-/* Семья на блоке с очками игры */
+/* Собака на блоке с очками игры */
 .dog {
   transform: scaleX(-1) rotate(5deg);
   right: 80px;
@@ -744,13 +771,6 @@ textarea {
 .pirati {
   right: 20px;
   top: 200px; /* Подбираете вручную под нужный заголовок */
-}
-
-.dvornik {
-  bottom: 260px;
-  left: -150px;
-  transform: rotate(-50deg);
-  z-index: 1;
 }
 
 .dyatel {
@@ -780,6 +800,25 @@ textarea {
   right: 200px;
 }
 
+@media (max-width: 1250px) {
+  .kot-winner {
+    top: -10px;
+    width: 130px;
+    right: -50px;
+    transform: rotate(-80deg);
+    transition: all 200ms ease-in-out;
+  }
+}
+@media (max-width: 750px) {
+  .kot-winner {
+    top: -10px;
+    width: 100px;
+    right: -50px;
+    transform: rotate(-80deg);
+    transition: all 200ms ease-in-out;
+  }
+}
+
 @media (max-width: 1400px) {
   .duck {
     bottom: -80px;
@@ -800,6 +839,14 @@ textarea {
   }
 }
 
+@media (max-width: 600px) {
+  .dvornik {
+    top: -20px;
+    right: 00px;
+    width: 75px;
+  }
+}
+
 @media (max-width: 500px) {
   .duck {
     bottom: -70px;
@@ -816,15 +863,6 @@ textarea {
 @media (min-width: 851px) {
   .dyatel2 {
     display: none;
-  }
-}
-
-@media (max-width: 850px) {
-  .dyatel {
-    display: none;
-  }
-  .dyatel2 {
-    display: block;
   }
 }
 
@@ -1042,7 +1080,7 @@ textarea {
 }
 
 .bio-photo {
-  flex: 0 0 160px;
+  /* flex: 0 0 160px; */
   text-align: center;
 }
 
@@ -1092,6 +1130,7 @@ textarea {
 }
 
 .award-desc {
+  max-width: 900px;
   flex: 1;
 }
 
