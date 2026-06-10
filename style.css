@@ -5,6 +5,28 @@
   list-style-type: none;
 }
 
+/* Убираем жёлтую/голубую подсветку автозаполнения */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Для Firefox */
+input:autofill,
+textarea:autofill {
+  box-shadow: 0 0 0 1000px var(--input-bg) inset !important;
+  color: var(--text) !important;
+}
+
 :root {
   --bg: #efe3cd;
   --surface: #fdf7e8;
@@ -14,7 +36,7 @@
   --border: #3c3224;
   --shadow: #cbb88c;
   --accent: #b2824a;
-  --input-bg: #fffdf5;
+  --input-bg: #fff9ef;
 }
 
 body.dark {
@@ -26,7 +48,7 @@ body.dark {
   --border: #d4c5a2;
   --shadow: #6b5c42;
   --accent: #c69c6d;
-  --input-bg: #5a4f3a;
+  --input-bg: #4a3f2e;
 }
 
 body {
@@ -424,6 +446,22 @@ textarea {
 }
 
 /* ИНПУТЫ И ТЕКСТАРЕА */
+
+#feedbackResult {
+  transition: all 0.4s ease-out;
+  max-height: 100px;
+  overflow: hidden;
+}
+
+#feedbackResult.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .feedback-form input,
 .feedback-form textarea {
   width: 100%;
@@ -520,11 +558,15 @@ textarea {
   flex-direction: row-reverse;
 }
 .history-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 1;
   min-width: 200px;
+  max-width: 450px;
   background: var(--bg);
   border-radius: 15px;
-  padding: 20px;
+  padding: 8px;
   text-align: center;
   position: relative;
 }
@@ -540,8 +582,23 @@ textarea {
   filter: url(#border-tremble);
   pointer-events: none;
 }
+
+.history-photo img {
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
 .history-text {
   flex: 1;
+}
+
+.history-photo svg {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
 }
 
 /* ФУТЕР */
@@ -709,7 +766,6 @@ textarea {
 .rules-character {
   position: absolute;
   z-index: 0;
-  cursor: pointer;
   transition: transform 0.2s ease;
 }
 
@@ -725,7 +781,7 @@ textarea {
 .bio-character {
   position: absolute;
   z-index: 0;
-  cursor: pointer;
+
   transition: transform 0.2s ease;
 }
 
@@ -743,8 +799,14 @@ textarea {
   transition: all 200ms ease-in-out;
 }
 
-.kot-winner:hover {
+/* .kot-winner:hover {
   transform: rotate(-46deg);
+} */
+
+.rock-cloud {
+  width: 200px;
+  top: 0px;
+  right: -20px;
 }
 
 /* Таракан - напротив "Цель игры" */
@@ -800,6 +862,12 @@ textarea {
   right: 200px;
 }
 
+.mouse-cheese {
+  width: 100px;
+  bottom: -30px;
+  right: 10px;
+}
+
 @media (max-width: 1250px) {
   .kot-winner {
     top: -10px;
@@ -816,6 +884,31 @@ textarea {
     right: -50px;
     transform: rotate(-80deg);
     transition: all 200ms ease-in-out;
+  }
+
+  .rock-cloud {
+    width: 140px;
+    top: 0px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 690px) {
+  .mouse-cheese {
+    width: 80px;
+    bottom: -25px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 410px) {
+  .rock-cloud-block {
+    overflow: visible;
+  }
+  .rock-cloud {
+    width: 150px;
+    top: -50px;
+    right: 0px;
   }
 }
 
@@ -998,7 +1091,7 @@ textarea {
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 850px) {
   .history-item,
   .history-item.reverse {
     flex-direction: column-reverse;
@@ -1092,6 +1185,7 @@ textarea {
 .bio-photo {
   /* flex: 0 0 160px; */
   text-align: center;
+  max-width: 450px;
 }
 
 .bio-photo svg {
