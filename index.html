@@ -942,24 +942,48 @@
 
       document
         .getElementById("feedbackForm")
-        .addEventListener("submit", (e) => {
+        .addEventListener("submit", async (e) => {
           e.preventDefault();
           const name =
             document.getElementById("fbName").value.trim() || "Гость";
-          const msg = document.getElementById("fbMessage").value.trim();
-          if (!msg) {
-            document.getElementById("feedbackResult").innerText =
-              "Напишите что-нибудь :)";
+          const message = document.getElementById("fbMessage").value.trim();
+          const resultDiv = document.getElementById("feedbackResult");
+
+          if (!message) {
+            resultDiv.innerText = "Напишите что-нибудь :)";
+            resultDiv.style.color = "#c0392b";
             return;
           }
-          document.getElementById("feedbackResult").innerHTML =
-            `Спасибо, ${name}! Ваше сообщение отправлено.`;
-          document.getElementById("fbName").value = "";
-          document.getElementById("fbMessage").value = "";
-          setTimeout(
-            () => (document.getElementById("feedbackResult").innerText = ""),
-            4000,
-          );
+
+          resultDiv.innerText = "Отправляем...";
+          resultDiv.style.color = "var(--text-soft)";
+
+          const SCRIPT_URL =
+            "https://script.google.com/macros/s/AKfycbyW1kbVeyLtwzLME9slqFMwh5cVnAthh0G7ZTDu0gvTSu8d26W0FAR5Egy0ZkK6Ng2Aaw/exec"; // СВОЯ ССЫЛКА
+
+          try {
+            const response = await fetch(SCRIPT_URL, {
+              method: "POST",
+              mode: "no-cors", // Важно для работы с Google Scripts
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: name, message: message }),
+            });
+
+            resultDiv.innerText = `Спасибо, ${name}! Ваше пожелание ушло в таблицу и на почту.`;
+            resultDiv.style.color = "#2a7a2a";
+            document.getElementById("fbName").value = "";
+            document.getElementById("fbMessage").value = "";
+          } catch (error) {
+            console.error("Ошибка:", error);
+            resultDiv.innerText = "Что-то пошло не так. Попробуйте позже.";
+            resultDiv.style.color = "#c0392b";
+          }
+
+          setTimeout(() => {
+            if (resultDiv.innerText.includes("Спасибо")) {
+              resultDiv.innerText = "";
+            }
+          }, 5000);
         });
 
       if (window.innerWidth <= 800) {
