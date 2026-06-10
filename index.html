@@ -118,390 +118,415 @@
 
       <!-- ПРАВИЛА -->
       <div id="rules-page" class="page">
-        <div class="sketch-card">
-          <h2>Правила игры</h2>
-          <p>
-            <strong>Имаджинариум: Карикатуры Сергея Белозёрова</strong> –
-            ассоциативная игра. Ведущий придумывает ассоциацию к своей карте,
-            остальные подбирают свои, затем голосуют.
-          </p>
-
-          <h3>Цель игры</h3>
-          <p>
-            Первым дойти до финиша (клетки №30), набрав наибольшее количество
-            очков. Очки начисляются за правильные ответы при голосовании.
-          </p>
-
-          <h3>Комплектация</h3>
-          <p>
-            <strong>50 карт</strong> с карикатурами,
-            <strong>10 карт усложнения</strong>, игровое поле (30 клеток),
-            фишки, жетоны голосования.
-          </p>
-
-          <h3>Подготовка к игре</h3>
-          <ul>
-            <li>- Поле разложите в центре стола.</li>
-            <li>- Фишки всех игроков поставьте на клетку «Старт».</li>
-            <li>
-              - Основные карты тщательно перемешайте и раздайте каждому игроку
-              по 6 карт. Оставшуюся колоду положите рубашкой вверх – это банк.
-            </li>
-            <li>
-              - Карты усложнения перемешайте и положите отдельной стопкой
-              рубашкой вверх рядом с полем.
-            </li>
-            <li>
-              - Жетоны голосования раздайте: каждый игрок получает набор жетонов
-              с цифрами от 1 до количества игроков. Цифры соответствуют позициям
-              карт, которые ведущий выложит в ряд.
-            </li>
-          </ul>
-
-          <h3>Ход игры</h3>
-          <p>
-            <strong>Кто начинает:</strong> <br />
-            Первый ведущий – тот, у кого день рождения ближе к сегодняшней дате.
-            Далее ведущий меняется по часовой стрелке.
-          </p>
-          <br />
-
-          <p><strong>Как проходит ход:</strong></p>
-          <ul>
-            <li>
-              - Ведущий смотрит на свои 6 карт, выбирает одну и кладёт её на
-              стол рубашкой вверх.
-            </li>
-            <li>
-              - Если фишка ведущего стоит на специальной клетке (с символом), он
-              обязан вытянуть верхнюю карту усложнения и применить её правило к
-              своей ассоциации. Использованная карта усложнения сбрасывается в
-              отдельную стопку (когда колода кончится – перемешайте сброс
-              заново).
-            </li>
-            <li>
-              - Если специальной клетки нет – ведущий просто называет любую
-              ассоциацию (слово, фразу, звук, ощущение).
-            </li>
-            <li>
-              - Ассоциация произносится вслух. Остальные игроки запоминают её.
-            </li>
-            <li>
-              - Остальные игроки выбирают из своих 6 карт ту, которая, по их
-              мнению, лучше всего подходит к услышанной ассоциации, и кладут её
-              рубашкой вверх рядом с картой ведущего.
-            </li>
-            <li>
-              - Ведущий собирает все выложенные карты (свою и чужие), тщательно
-              перемешивает их и выкладывает в ряд картинками вверх.
-            </li>
-          </ul>
-
-          <h3>Голосование</h3>
-          <ul>
-            <li>
-              - Каждый игрок (кроме ведущего) получает жетон с номером позиции
-              карты, которую он считает картой ведущего.
-            </li>
-            <li>- Все игроки одновременно показывают свои жетоны.</li>
-            <li>- Ведущий объявляет, какая карта была его.</li>
-          </ul>
-
-          <h3>Подсчёт очков и движение фишек</h3>
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-              margin: 16px 0;
-            "
-          >
-            <div
-              class="flex-count"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <span style="font-weight: bold; flex: 2; max-width: 350px"
-                >Игрок угадал карту ведущего</span
-              >
-              <div class="rules-table-person-count">
-                <span>угадавший</span>
-                <span style="color: #2a7a2a">+3 очка</span>
-              </div>
-            </div>
-            <div
-              class="flex-count"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <span style="font-weight: bold; flex: 2; max-width: 350px"
-                >Никто не угадал карту ведущего</span
-              >
-              <div class="rules-table-person-count">
-                <span>ведущий</span>
-                <span style="color: #a52a2a">−2 очка</span>
-              </div>
-            </div>
-            <div
-              class="flex-count"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <span style="font-weight: bold; flex: 2; max-width: 350px"
-                >Все угадали карту ведущего</span
-              >
-              <div class="rules-table-person-count">
-                <span>ведущий</span>
-                <span style="color: #a52a2a">−2 очка</span>
-              </div>
-            </div>
-            <div
-              class="flex-count"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <span style="font-weight: bold; flex: 2; max-width: 350px"
-                >Карту угадали, но не все</span
-              >
-              <div class="rules-table-person-count">
-                <span>ведущий</span>
-                <span style="color: #2a7a2a">+3 очка</span>
-              </div>
-            </div>
-            <div
-              class="flex-count"
-              style="
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <span style="font-weight: bold; flex: 2; max-width: 350px"
-                >Ложная ассоциация и никто не угадал</span
-              >
-              <div class="rules-table-person-count">
-                <span>ведущий</span>
-                <span style="color: #a52a2a">−4 очка</span>
-              </div>
-            </div>
-          </div>
-          <p>
-            Фишки передвигаются на соответствующее количество клеток вперёд (или
-            назад).
-          </p>
-
-          <h3>Смена ведущего и конец хода</h3>
-          <ul>
-            <li>- Все сыгранные основные карты уходят в сброс.</li>
-            <li>
-              - Игроки добирают из банка до 6 карт (каждый из своей колоды).
-            </li>
-            <li>
-              - Право хода переходит к следующему игроку по часовой стрелке.
-            </li>
-          </ul>
-
-          <h3>Карты усложнения (полный список)</h3>
-          <p>
-            Если фишка ведущего попала на специальную клетку, он тянет карту и
-            применяет задание:
-          </p>
-
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              gap: 12px;
-              margin: 16px 0;
-            "
-          >
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>4 (или клевер) – Ровно 4 слова</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Ассоциация должна состоять ровно из четырёх слов (ни больше, ни
-                меньше).</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>? – Вопрос</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Сформулируйте ассоциацию в виде вопроса.</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Телевизор – Кино и мультфильмы</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Свяжите ассоциацию с фильмом, мультфильмом или сериалом
-                (название, фраза, персонаж).</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Книга – Рассказ</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Расскажите небольшую историю (2-3 предложения).</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Сердечко – Бренд или реклама</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Свяжите ассоциацию с известным брендом, рекламой или
-                слоганом.</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Желание – Я хочу, чтобы...</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Начните ассоциацию со слов «Я хочу, чтобы...».</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Рука – Тактильное ощущение</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Опишите, что картинка напоминает на ощупь («Мокрый асфальт»,
-                «Колючий ёжик»).</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Череп – Ложная ассоциация</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Дайте ассоциацию, которая абсолютно не подходит к вашей карте.
-                Задача – запутать всех. Если никто не угадал – ведущий получает
-                двойной штраф (−4 клетки).</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>Человечек – Пантомима</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Ни слова! Покажите ассоциацию жестами. Остальные подбирают
-                карты под этот жест.</span
-              >
-            </div>
-            <div
-              style="
-                background: rgba(0, 0, 0, 0.03);
-                padding: 12px;
-                border-radius: 16px;
-              "
-            >
-              <strong>А – Одна буква</strong>
-              <span style="display: block; font-size: 0.9rem; margin-top: 4px"
-                >Все слова ассоциации начинаются на одну букву. Предлоги («в»,
-                «у», «к», «с», «о») и союзы («и», «а», «но», «да») не считаются.
-                Пример: «Кот в кастрюле картошку кушал» (буква «К»).</span
-              >
-            </div>
+        <div class="sketch-card-rules">
+          <div class="rules-character dyatel">
+            <img src="images/characters/dyatel.png" alt="Дятлище" />
           </div>
 
-          <h3>Окончание игры</h3>
-          <ul>
-            <li>
-              - Игра заканчивается, как только один из игроков достигает финиша
-              (клетка №30) или пересекает её.
-            </li>
-            <li>
-              - Если финиш пересекли одновременно несколько игроков – побеждает
-              тот, кто ушёл дальше.
-            </li>
-            <li>
-              - В случае равенства – победитель определяется по старшинству
-              (можно бросить кубик, спеть песню или просто считать, что победила
-              дружба).
-            </li>
-          </ul>
+          <!-- <div class="rules-character dvornik">
+            <img src="images/characters/dvornik.png" alt="Дворник" />
+          </div> -->
 
-          <h3>Особые пожелания от создателей</h3>
-          <p>
-            Эта игра сделана с любовью. В каждой карте – частичка творчества
-            Сергея Белозёрова, воронежского карикатуриста. Мы надеемся, что игра
-            принесёт вам столько же радости и смеха, сколько мы получили,
-            собирая её.
-          </p>
-          <p>
-            Не бойтесь импровизировать. Если какое-то правило кажется вам
-            сложным – измените его под свою компанию. Главное, чтобы всем было
-            весело.
-          </p>
+          <div class="sketch-card-inner">
+            <!-- ПЕРСОНАЖИ ПЕРСОНАЖИ ПЕРСОНАЖИ ПЕРСОНАЖИ -->
+            <div class="rules-character dyatel2">
+              <img src="images/characters/dyatel.png" alt="Дятлище2" />
+            </div>
+            <div class="rules-character mouse">
+              <img src="images/characters/mouse.png" alt="Мыша" />
+            </div>
+
+            <!-- ПЕРСОНАЖИ ПЕРСОНАЖИ ПЕРСОНАЖИ ПЕРСОНАЖИ -->
+
+            <h2>Правила игры</h2>
+            <p>
+              <strong>Имаджинариум: Карикатуры Сергея Белозёрова</strong> –
+              ассоциативная игра. Ведущий придумывает ассоциацию к своей карте,
+              остальные подбирают свои, затем голосуют.
+            </p>
+
+            <h3>Цель игры</h3>
+            <p>
+              Первым дойти до финиша (клетки №30), набрав наибольшее количество
+              очков. Очки начисляются за правильные ответы при голосовании.
+            </p>
+
+            <h3>Комплектация</h3>
+            <p>
+              <strong>50 карт</strong> с карикатурами,
+              <strong>10 карт усложнения</strong>, игровое поле (30 клеток),
+              фишки, жетоны голосования.
+            </p>
+
+            <h3>Подготовка к игре</h3>
+            <ul>
+              <li>- Поле разложите в центре стола.</li>
+              <li>- Фишки всех игроков поставьте на клетку «Старт».</li>
+              <li>
+                - Основные карты тщательно перемешайте и раздайте каждому игроку
+                по 6 карт. Оставшуюся колоду положите рубашкой вверх – это банк.
+              </li>
+              <li>
+                - Карты усложнения перемешайте и положите отдельной стопкой
+                рубашкой вверх рядом с полем.
+              </li>
+              <li>
+                - Жетоны голосования раздайте: каждый игрок получает набор
+                жетонов с цифрами от 1 до количества игроков. Цифры
+                соответствуют позициям карт, которые ведущий выложит в ряд.
+              </li>
+            </ul>
+
+            <h3>Ход игры</h3>
+            <p>
+              <strong>Кто начинает:</strong> <br />
+              Первый ведущий – тот, у кого день рождения ближе к сегодняшней
+              дате. Далее ведущий меняется по часовой стрелке.
+            </p>
+            <br />
+
+            <p><strong>Как проходит ход:</strong></p>
+            <ul>
+              <li>
+                - Ведущий смотрит на свои 6 карт, выбирает одну и кладёт её на
+                стол рубашкой вверх.
+              </li>
+              <li>
+                - Если фишка ведущего стоит на специальной клетке (с символом),
+                он обязан вытянуть верхнюю карту усложнения и применить её
+                правило к своей ассоциации. Использованная карта усложнения
+                сбрасывается в отдельную стопку (когда колода кончится –
+                перемешайте сброс заново).
+              </li>
+              <li>
+                - Если специальной клетки нет – ведущий просто называет любую
+                ассоциацию (слово, фразу, звук, ощущение).
+              </li>
+              <li>
+                - Ассоциация произносится вслух. Остальные игроки запоминают её.
+              </li>
+              <li>
+                - Остальные игроки выбирают из своих 6 карт ту, которая, по их
+                мнению, лучше всего подходит к услышанной ассоциации, и кладут
+                её рубашкой вверх рядом с картой ведущего.
+              </li>
+              <li>
+                - Ведущий собирает все выложенные карты (свою и чужие),
+                тщательно перемешивает их и выкладывает в ряд картинками вверх.
+              </li>
+            </ul>
+
+            <h3>Голосование</h3>
+            <ul>
+              <li>
+                - Каждый игрок (кроме ведущего) получает жетон с номером позиции
+                карты, которую он считает картой ведущего.
+              </li>
+              <li>- Все игроки одновременно показывают свои жетоны.</li>
+              <li>- Ведущий объявляет, какая карта была его.</li>
+            </ul>
+
+            <h3>Подсчёт очков и движение фишек</h3>
+            <div class="rules-count-flex">
+              <div class="rules-character dog">
+                <img src="images/characters/dog.png" alt="Собачка" />
+              </div>
+              <div class="rules-character pirati">
+                <img src="images/characters/pirati.png" alt="Пираты Рыбовые" />
+              </div>
+              <div
+                class="flex-count"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <span style="font-weight: bold; flex: 2; max-width: 350px"
+                  >Игрок угадал карту ведущего</span
+                >
+                <div class="rules-table-person-count">
+                  <span>угадавший</span>
+                  <span style="color: #2a7a2a">+3 очка</span>
+                </div>
+              </div>
+              <div
+                class="flex-count"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <span style="font-weight: bold; flex: 2; max-width: 350px"
+                  >Никто не угадал карту ведущего</span
+                >
+                <div class="rules-table-person-count">
+                  <span>ведущий</span>
+                  <span style="color: #a52a2a">−2 очка</span>
+                </div>
+              </div>
+              <div
+                class="flex-count"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <span style="font-weight: bold; flex: 2; max-width: 350px"
+                  >Все угадали карту ведущего</span
+                >
+                <div class="rules-table-person-count">
+                  <span>ведущий</span>
+                  <span style="color: #a52a2a">−2 очка</span>
+                </div>
+              </div>
+              <div
+                class="flex-count"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <span style="font-weight: bold; flex: 2; max-width: 350px"
+                  >Карту угадали, но не все</span
+                >
+                <div class="rules-table-person-count">
+                  <span>ведущий</span>
+                  <span style="color: #2a7a2a">+3 очка</span>
+                </div>
+              </div>
+              <div
+                class="flex-count"
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: space-between;
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <span style="font-weight: bold; flex: 2; max-width: 350px"
+                  >Ложная ассоциация и никто не угадал</span
+                >
+                <div class="rules-table-person-count">
+                  <span>ведущий</span>
+                  <span style="color: #a52a2a">−4 очка</span>
+                </div>
+              </div>
+            </div>
+            <p>
+              Фишки передвигаются на соответствующее количество клеток вперёд
+              (или назад).
+            </p>
+
+            <h3>Смена ведущего и конец хода</h3>
+            <ul>
+              <li>- Все сыгранные основные карты уходят в сброс.</li>
+              <li>
+                - Игроки добирают из банка до 6 карт (каждый из своей колоды).
+              </li>
+              <li>
+                - Право хода переходит к следующему игроку по часовой стрелке.
+              </li>
+            </ul>
+
+            <h3>Карты усложнения (полный список)</h3>
+            <p>
+              Если фишка ведущего попала на специальную клетку, он тянет карту и
+              применяет задание:
+            </p>
+
+            <div
+              class="add-cards"
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin: 16px 0;
+              "
+            >
+              <div class="rules-character duck">
+                <img src="images/characters/duck.png" alt="Уткалёт" />
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>4 (или клевер) – Ровно 4 слова</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Ассоциация должна состоять ровно из четырёх слов (ни больше,
+                  ни меньше).</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>? – Вопрос</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Сформулируйте ассоциацию в виде вопроса.</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Телевизор – Кино и мультфильмы</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Свяжите ассоциацию с фильмом, мультфильмом или сериалом
+                  (название, фраза, персонаж).</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Книга – Рассказ</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Расскажите небольшую историю (2-3 предложения).</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Сердечко – Бренд или реклама</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Свяжите ассоциацию с известным брендом, рекламой или
+                  слоганом.</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Желание – Я хочу, чтобы...</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Начните ассоциацию со слов «Я хочу, чтобы...».</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Рука – Тактильное ощущение</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Опишите, что картинка напоминает на ощупь («Мокрый асфальт»,
+                  «Колючий ёжик»).</span
+                >
+              </div>
+
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Череп – Ложная ассоциация</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Дайте ассоциацию, которая абсолютно не подходит к вашей
+                  карте. Задача – запутать всех. Если никто не угадал – ведущий
+                  получает двойной штраф (−4 клетки).</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>Человечек – Пантомима</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Ни слова! Покажите ассоциацию жестами. Остальные подбирают
+                  карты под этот жест.</span
+                >
+              </div>
+              <div
+                style="
+                  background: rgba(0, 0, 0, 0.03);
+                  padding: 12px;
+                  border-radius: 16px;
+                "
+              >
+                <strong>А – Одна буква</strong>
+                <span style="display: block; font-size: 0.9rem; margin-top: 4px"
+                  >Все слова ассоциации начинаются на одну букву. Предлоги («в»,
+                  «у», «к», «с», «о») и союзы («и», «а», «но», «да») не
+                  считаются. Пример: «Кот в кастрюле картошку кушал» (буква
+                  «К»).</span
+                >
+              </div>
+            </div>
+
+            <h3>Окончание игры</h3>
+            <ul>
+              <li>
+                - Игра заканчивается, как только один из игроков достигает
+                финиша (клетка №30) или пересекает её.
+              </li>
+              <li>
+                - Если финиш пересекли одновременно несколько игроков –
+                побеждает тот, кто ушёл дальше.
+              </li>
+              <li>
+                - В случае равенства – победитель определяется по старшинству
+                (можно бросить кубик, спеть песню или просто считать, что
+                победила дружба).
+              </li>
+            </ul>
+
+            <h3>Особые пожелания от создателей</h3>
+            <p>
+              Эта игра сделана с любовью. В каждой карте – частичка творчества
+              Сергея Белозёрова, воронежского карикатуриста. Мы надеемся, что
+              игра принесёт вам столько же радости и смеха, сколько мы получили,
+              собирая её.
+            </p>
+            <p>
+              Не бойтесь импровизировать. Если какое-то правило кажется вам
+              сложным – измените его под свою компанию. Главное, чтобы всем было
+              весело.
+            </p>
+          </div>
         </div>
       </div>
 
