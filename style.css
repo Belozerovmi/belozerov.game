@@ -819,6 +819,16 @@ textarea {
   }
 }
 
+@media (max-width: 420px) {
+  .kot-winner {
+    top: 20px;
+    width: 100px;
+    right: -50px;
+    transform: rotate(-80deg);
+    transition: all 200ms ease-in-out;
+  }
+}
+
 @media (max-width: 1400px) {
   .duck {
     bottom: -80px;
