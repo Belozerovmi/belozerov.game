@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/favicon.png" alt="Каракули Logo" width="100"/>
+  <img src="images/fly.ico" alt="Каракули Logo" width="100"/>
 </p>
 
 <h1 align="center">Каракули — Карикатуры Сергея Белозёрова</h1>
