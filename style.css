@@ -106,10 +106,19 @@ textarea {
   gap: 20px;
 }
 
+/* Логотип как ссылка */
+.logo {
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
 .logo h1 {
   font-size: 1.8rem;
   font-weight: bold;
+  color: var(--text);
 }
+
 .logo p {
   color: var(--text-light);
   font-size: 0.85rem;
@@ -220,7 +229,6 @@ textarea {
   align-items: center;
   margin-bottom: 25px;
   padding-bottom: 15px;
-  border-bottom: 2px dotted var(--accent);
 }
 .mobile-menu-logo h3 {
   font-size: 1.2rem;
@@ -375,7 +383,7 @@ textarea {
   top: -3px;
   left: -3px;
   right: -3px;
-  bottom: -3px;
+  bottom: -2px;
   border: 3px solid var(--border);
   border-radius: 18px;
   filter: url(#border-tremble);
@@ -585,7 +593,7 @@ textarea {
 
 .history-photo img {
   width: 100%;
-  height: auto;
+  height: 300px;
   max-height: 350px;
   object-fit: cover;
   border-radius: 10px;
@@ -662,7 +670,7 @@ textarea {
 
 .welcome-character {
   position: absolute;
-  bottom: -1px;
+  bottom: 0px;
   right: 20px;
   z-index: 0;
 
@@ -868,6 +876,98 @@ textarea {
   right: 10px;
 }
 
+/* ========== ПЕРСОНАЖИ НА СТРАНИЦЕ ИСТОРИИ ========== */
+.history-character,
+.feedback-character {
+  position: absolute;
+  z-index: 1;
+  transition: transform 0.2s ease;
+  pointer-events: none; /* чтобы не мешали кликам */
+}
+
+.history-character img,
+.feedback-character img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(2px 0px 0px var(--shadow));
+}
+
+.pirat-history {
+  width: 150px;
+  top: 0px;
+  right: 0px;
+}
+
+.kotiki-history {
+  width: 160px;
+  left: 20px;
+  bottom: 0px;
+}
+
+/* Новый внутренний контейнер для обрезки */
+.history-photo-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+}
+
+.history-photo-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Гусак теперь внутри обёртки */
+.goose-history {
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 250px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ========================ФИДБЭК ПЕРСЫ====================== */
+
+.kot-feedback {
+  width: 180px;
+  bottom: -80px;
+  right: 20px;
+}
+
+.chaika-feedback {
+  position: absolute;
+  width: 80px;
+  right: 80px;
+  top: -45px;
+  transform: scaleX(-1) rotate(20deg);
+}
+
+.dog-feedback {
+  width: 80px;
+  top: -40px;
+  left: 10px;
+  transform: scaleX(-1);
+}
+
+@media (max-width: 375px) and (min-width: 315px) {
+  .chaika-feedback {
+    width: 50px;
+    top: -30px;
+    right: 40px;
+  }
+}
+
+@media (max-width: 300px) {
+  .chaika-feedback {
+    display: none;
+  }
+}
+
 @media (max-width: 1250px) {
   .kot-winner {
     top: -10px;
@@ -955,6 +1055,18 @@ textarea {
     bottom: -70px;
     right: 10px;
   }
+
+  .pirat-history {
+    width: 100px;
+    top: 0px;
+    right: -30px;
+  }
+
+  .kot-feedback {
+    width: 100px;
+    bottom: -80px;
+    right: 20px;
+  }
 }
 
 @media (max-width: 330px) {
@@ -995,6 +1107,15 @@ textarea {
     width: 40px;
     right: -15px;
     transform: rotate(-40deg);
+  }
+}
+
+@media (max-width: 350px) and (min-width: 300px) {
+  .pirat-history {
+    width: 80px;
+    top: 70px;
+    right: -20px;
+    transform: rotate(130deg);
   }
 }
 
@@ -1095,6 +1216,11 @@ textarea {
   .history-item,
   .history-item.reverse {
     flex-direction: column-reverse;
+  }
+
+  .history-item {
+    margin: 0px 0px;
+    margin-bottom: 35px;
   }
 
   .history-photo {
@@ -1268,4 +1394,323 @@ textarea {
 .bio-photo img {
   width: 100%;
   border-radius: 12px;
+}
+
+body.dark .welcome-character img,
+body.dark .welcome-character-fly img,
+body.dark .rules-character img,
+body.dark .bio-character img,
+body.dark .history-character img,
+body.dark .feedback-character img {
+  filter: url(#white-stroke);
+}
+/* ========== ФУТЕР ========== */
+.footer-island {
+  position: relative;
+  background: var(--surface);
+  border-radius: 15px;
+  margin-top: 50px;
+  box-shadow: 8px 8px 0 var(--shadow);
+}
+
+.footer-island::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid var(--border);
+  border-radius: 18px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+}
+
+.footer-simple {
+  /* padding: 25px 20px; */
+  text-align: center;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.footer-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg);
+  border-radius: 50%;
+  color: var(--text);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.footer-icon-link::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  filter: url(#border-tremble);
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.footer-icon-link:hover {
+  transform: translateY(-3px);
+  background: var(--card);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+
+.donate-icon {
+  color: var(--accent);
+}
+
+.footer-copyright p {
+  margin: 4px 0;
+  color: var(--text-light);
+  font-size: 0.75rem;
+}
+
+/* Адаптив */
+@media (max-width: 500px) {
+  .footer-icons {
+    gap: 18px;
+  }
+
+  .footer-icon-link {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer-icon-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.feedback-legal {
+  font-size: 12px;
+  opacity: 0.5;
+}
+/* ========== ЮРИДИЧЕСКАЯ СТРОКА ПОД ФУТЕРОМ ========== */
+.footer-legal {
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px 20px;
+}
+
+.legal-line {
+  margin: 5px 0;
+}
+
+.legal-text {
+  font-size: 0.65rem;
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+.legal-link {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 0.7rem;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.legal-link:hover {
+  opacity: 1;
+}
+
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  max-width: 500px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 30px;
+}
+
+.modal-content ul {
+  list-style: none;
+  margin: 10px 0;
+}
+
+.modal-content li {
+  margin: 5px 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text);
+  z-index: 10;
+}
+
+.modal-close-btn {
+  margin-top: 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* Адаптив */
+@media (max-width: 550px) {
+  .footer-legal {
+    padding: 12px 15px;
+  }
+
+  .legal-text {
+    font-size: 0.55rem;
+  }
+
+  .modal-content {
+    padding: 25px 20px;
+  }
+}
+
+/* ========== СТРАНИЦА ПОЛИТИКИ ПЕРСОНАЛЬНЫХ ДАННЫХ ========== */
+.policy-block {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  /* border-bottom: 1px dashed var(--accent); */
+}
+
+.policy-block h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: var(--accent);
+}
+
+.policy-block p {
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.policy-block ul {
+  list-style: none;
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.policy-block li {
+  margin: 6px 0;
+  color: var(--text-light);
+}
+
+.policy-note {
+  background: var(--bg);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.policy-note::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid var(--border);
+  border-radius: 17px;
+  filter: url(#border-tremble);
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.policy-note p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Персонажи на странице политики */
+.policy-character {
+  position: absolute;
+  z-index: 0;
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.policy-character img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(2px 0px 0px var(--shadow));
+}
+
+.shield-policy {
+  width: 120px;
+  top: 20px;
+  right: -50px;
+  transform: rotate(-45deg);
+}
+
+.lock-policy {
+  width: 100px;
+  bottom: -20px;
+  left: -30px;
+  transform: rotate(-10deg);
+}
+
+@media (max-width: 600px) {
+  .shield-policy {
+    width: 80px;
+    top: -30px;
+    right: -10px;
+  }
+
+  .lock-policy {
+    width: 70px;
+    bottom: -15px;
+    left: -15px;
+  }
+
+  .policy-block h3 {
+    font-size: 1.1rem;
+  }
 }
