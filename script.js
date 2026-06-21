@@ -1,3 +1,6 @@
+// ============================================================
+// ============================================================
+
 function switchPage(pageId) {
   document
     .querySelectorAll(".page")
@@ -231,3 +234,35 @@ if (policyLinkFromFeedback) {
     }, 150);
   });
 }
+
+// ===== РОУТИНГ (работа с URL) =====
+function getPageFromPath() {
+  const path = window.location.pathname.replace("/", "");
+  if (path === "rules") return "rules";
+  if (path === "history") return "history";
+  if (path === "biographies" || path === "bio" || path === "father")
+    return "father";
+  if (path === "feedback") return "feedback";
+  if (path === "policy") return "policy";
+  return "welcome";
+}
+
+// При загрузке открываем страницу по URL
+document.addEventListener("DOMContentLoaded", function () {
+  const page = getPageFromPath();
+  switchPage(page);
+});
+
+// При переключении вкладки меняем URL (без перезагрузки)
+const originalSwitch = switchPage;
+switchPage = function (pageId) {
+  originalSwitch(pageId);
+  let path = "/";
+  if (pageId === "rules") path = "/rules";
+  else if (pageId === "history") path = "/history";
+  else if (pageId === "father") path = "/biographies";
+  else if (pageId === "feedback") path = "/feedback";
+  else if (pageId === "policy") path = "/policy";
+  history.pushState(null, null, path);
+  localStorage.setItem("lastPage", pageId);
+};
