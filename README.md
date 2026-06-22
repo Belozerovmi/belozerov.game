@@ -191,7 +191,7 @@ karakuli/
 
 Команда проекта
 <table align="center"> <thead> <tr> <th>Кто</th> <th>Роль</th> </tr> </thead> <tbody> <tr><td><strong>Сергей Белозёров</strong></td><td>Художник, автор карикатур</td></tr> <tr><td><strong>Михаил Белозёров</strong></td><td>Идея игры, дизайн карточек, вёрстка сайта</td></tr> <tr><td><strong>Дарья Иванова</strong></td><td>Дизайн-концепция, игровое поле, карты усложнения</td></tr> </tbody> </table>
-Примечание
+*Примечание
 Instagram и Facebook принадлежат компании Meta, признанной экстремистской организацией и запрещённой на территории РФ.
 
 <p align="center">made by belozerov</p>
